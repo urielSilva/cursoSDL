@@ -1,15 +1,26 @@
 
 <div class="container">
+
+	<input id="worker_id" type="hidden" value="<%= @worker.id%>">
+
 	<h1>Suas Atividades</h1>
-		<% @worker.tasks.each do |t| %>
-			<div class="panel panel-primary col-xs-4" style="margin: 20px; padding-left: 0; padding-right: 0">
+	<h3>Total de pontos: <%= @total %></h3>
+		<% @worker.worker_tasks.each do |wt| %>
+			<% panel = wt.done ?  "panel-success " : "panel-primary"%>
+			<div class="panel <%= panel %> col-xs-2" style="margin: 20px; padding-left: 0; padding-right: 0">
 				<div class="panel-heading">
-					<h3 class="panel-title"><%= t.description.capitalize%></h3>
+					<h3 class="panel-title"><%= wt.task.description.capitalize%></h3>
 				</div>
 
 				<div class="panel-body">
-					<p><%= t.points%> pontos</p>
+					<p><%= wt.task.points%> pontos</p>
+					<a class="finish-task" href="/finish_task/<%= wt.task.id %>">
+						<i class="glyphicon glyphicon-ok"></i>
+					</a>
+					
+
 				</div>
+
 			</div>	
 		<% end %>
 	

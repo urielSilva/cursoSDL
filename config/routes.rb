@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
 
   resources :workers do
+    member do 
+      post 'finish_task/:task_id' => 'workers#finish_task'
+    end
   end
   # Example resource route with options:
   #   resources :products do

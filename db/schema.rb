@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730154835) do
+ActiveRecord::Schema.define(version: 20160730211941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,19 @@ ActiveRecord::Schema.define(version: 20160730154835) do
     t.integer  "points"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "done"
   end
 
   create_table "worker_tasks", force: :cascade do |t|
-    t.integer "worker_id", null: false
-    t.integer "task_id",   null: false
+    t.integer  "worker_id"
+    t.integer  "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "done"
   end
 
-  add_index "worker_tasks", ["worker_id", "task_id"], name: "index_worker_tasks_on_worker_id_and_task_id", unique: true, using: :btree
+  add_index "worker_tasks", ["task_id"], name: "index_worker_tasks_on_task_id", using: :btree
+  add_index "worker_tasks", ["worker_id"], name: "index_worker_tasks_on_worker_id", using: :btree
 
   create_table "workers", force: :cascade do |t|
     t.string   "name"
@@ -36,4 +41,6 @@ ActiveRecord::Schema.define(version: 20160730154835) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "worker_tasks", "tasks"
+  add_foreign_key "worker_tasks", "workers"
 end
