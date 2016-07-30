@@ -1,12 +1,16 @@
 class TasksController < ApplicationController
 
 	def index
-		@task = Task.new
+		@tasks = Task.all
 	end
 
 	def create
-		Task.create params.require(:task).permit(:description, :points)
+		task = Task.new params.require(:task).permit(:description, :points, worker_ids: [])
+		task.save
+		redirect_to tasks_path
+	end
+
+	def new
 		@task = Task.new
-		render 'tasks/index'
 	end
 end

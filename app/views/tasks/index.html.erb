@@ -1,9 +1,4 @@
-<%= form_for @task do |f| %>
-	<h3>Descrição</h3>
-	<%= f.text_field  :description %>
-	
-	<h3>Pontos</h3>
-	<%= f.text_field :points %>
-
-	<%= f.submit 'Cadastrar' %>
+<% @tasks.each do |t| %>
+		<span><%= t.description%></span>
 <% end %>
+

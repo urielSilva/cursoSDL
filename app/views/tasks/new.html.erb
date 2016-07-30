@@ -1,0 +1,18 @@
+<h1>Cadastro de tarefa</h1>
+<%= form_for @task do |f| %>
+	<h3>Descrição</h3>
+	<%= f.text_field  :description %>
+	
+	<h3>Pontos</h3>
+	<%= f.text_field :points %>
+
+	<h3>Colaboradores</h3>
+	<%= f.collection_check_boxes(:worker_ids, Worker.all, :id, :name)  do |c| %>
+		<div>
+			<%= c.check_box %>
+			<%= c.label %>
+		</div>
+	<% end %>
+
+	<%= f.submit 'Cadastrar' %>
+<% end %>
