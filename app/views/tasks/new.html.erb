@@ -1,18 +1,34 @@
-<h1>Cadastro de tarefa</h1>
-<%= form_for @task do |f| %>
-	<h3>Descrição</h3>
-	<%= f.text_field  :description %>
-	
-	<h3>Pontos</h3>
-	<%= f.text_field :points %>
-
-	<h3>Colaboradores</h3>
-	<%= f.collection_check_boxes(:worker_ids, Worker.all, :id, :name)  do |c| %>
-		<div>
-			<%= c.check_box %>
-			<%= c.label %>
-		</div>
+<div class="container">
+	<h1>Cadastro de tarefa</h1>
+	<%= form_for @task, html: {class: 'form-horizontal'}  do |f|%>
+	<div class="row">
+			
+			<div class="form-group">
+				<label class="control-label col-sm-1">Descrição</label>
+				<div class="col-sm-8">
+					<%= f.text_field :description, class: 'form-control' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1">Pontos</label>
+				<div class="col-sm-8">
+					<%= f.text_field :points, class: 'form-control' %>
+				</div>
+			</div>
+	</div>
+	<div class="row">
+			<div class="form-group">
+				<h4>Colaboradores</h4>
+				<div class="col-sm-3">
+					<%= f.collection_check_boxes(:worker_ids, Worker.all, :id, :name)  do |c| %>
+						<div>
+							<%= c.check_box %>
+							<%= c.label %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+	</div>	
+		<%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
 	<% end %>
-
-	<%= f.submit 'Cadastrar' %>
-<% end %>
+</div>
