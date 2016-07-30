@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 	def create
 		task = Task.new params.require(:task).permit(:description, :points, worker_ids: [])
 		task.save
-		redirect_to tasks_path
+		redirect_to workers_path
 	end
 
 	def new

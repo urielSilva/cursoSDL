@@ -1,0 +1,17 @@
+
+<div class="container">
+	<h1>Suas Atividades</h1>
+		<% @worker.tasks.each do |t| %>
+			<div class="panel panel-primary col-xs-4" style="margin: 20px; padding-left: 0; padding-right: 0">
+				<div class="panel-heading">
+					<h3 class="panel-title"><%= t.description.capitalize%></h3>
+				</div>
+
+				<div class="panel-body">
+					<p><%= t.points%> pontos</p>
+				</div>
+			</div>	
+		<% end %>
+	
+
+</div>
